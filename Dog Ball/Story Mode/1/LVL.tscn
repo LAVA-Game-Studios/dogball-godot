@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/FLAG.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Story Mode/Grass.svg" type="Texture" id=2]
+[ext_resource path="res://Story Mode/honeyhive.wav" type="AudioStream" id=3]
+[ext_resource path="res://Story Mode/LEVEL.gd" type="Script" id=4]
+[ext_resource path="res://Story Mode/Ground.gd" type="Script" id=5]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.470588, 0.709804, 0.792157, 1 )
+polygon = PoolVector2Array( -632, -1376, 7024, -1608, 6616, 888, -696, 800 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0, 41 )
+build_mode = 1
+polygon = PoolVector2Array( -376, 0, -399.937, 417.962, 1847.67, 89.7405, 2584, 23, 3032, 159, 3384, 39, 3624, 247, 3992, 167, 5032, 135, 6064, 127, 6472, -193, 6524.5, -416.119, 6456, -601, 6400, -689, 6144, -817, 6072, -729, 6240, -689, 6352, -625, 6440, -345, 6416, -233, 6288, -129, 5832, 87, 5104, 87, 5080, -81, 5032, -1, 4889.95, 128.955, 4656, 119, 4640, 111, 4520, 23, 4232, -33, 3968, -17, 3680, 39, 3664, 207, 3376, -17, 2976, 31, 2528, -65, 1829.82, 0 )
+script = ExtResource( 5 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0, 41 )
+build_mode = 1
+polygon = PoolVector2Array( 5096, -105, 5056, -201, 4952, -241, 4856, -177, 4840, -137, 4856, -81, 4944, -57, 5024, -73, 5024, -49, 4944, -33, 4856, -57, 4816, -137, 4840, -185, 4952, -265, 5056, -225, 5096, -137 )
+script = ExtResource( 5 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D2"]
+texture = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 6112, -640 )
+
+[node name="AnimatedSprite" parent="Node2D/Node2D" index="1"]
+frame = 0
+
+[connection signal="body_entered" from="Node2D/Node2D/Area2D" to="." method="win"]
+
+[editable path="Node2D"]
