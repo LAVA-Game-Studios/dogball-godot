@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/flag/FLAG.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Story Mode/Grass.svg" type="Texture" id=2]
+[ext_resource path="res://Story Mode/honeyhive.wav" type="AudioStream" id=3]
+[ext_resource path="res://Story Mode/LEVEL.gd" type="Script" id=4]
+[ext_resource path="res://Story Mode/Ground.gd" type="Script" id=5]
+[ext_resource path="res://Assets/dogball/DOGBALL.tscn" type="PackedScene" id=6]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+level = 1
+
+[node name="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2280, 424 )
+
+[node name="AnimatedSprite" parent="Node2D/Node2D" index="1"]
+frame = 0
+
+[node name="Planet" type="Node2D" parent="Node2D"]
+position = Vector2( -2280, -274 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D2" type="StaticBody2D" parent="Node2D/Planet"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/Planet/Area2D2"]
+polygon = PoolVector2Array( -36.82, -141.8, -73.5286, -126.068, -100.498, -105.841, -125.22, -75.8748, -140.952, -40.6646, -146.946, -0.210312, -140.952, 37.9965, -128.966, 70.9593, -104.244, 104.671, -75.776, 127.146, -39.0675, 140.631, -0.111511, 145.875, 5880, 1914, 11592, -150, 2048, -1878, 354.989, -468.091, 5544, 1018, 10920, -214, 11064, -134, 5520, 1210, 173.816, -317.214 )
+script = ExtResource( 5 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D/Planet/Area2D2/CollisionPolygon2D2"]
+texture = ExtResource( 2 )
+
+[node name="Area2D3" type="Area2D" parent="Node2D/Planet"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/Planet/Area2D3"]
+polygon = PoolVector2Array( 1968, 194, 2000, 202, 2008, 186, 1976, 178 )
+script = ExtResource( 5 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D/Planet/Area2D3/CollisionPolygon2D2"]
+color = Color( 1, 0, 0, 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="Node2D2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1784, 280 )
+
+[connection signal="body_entered" from="Node2D/Node2D/Area2D" to="." method="fadeIn"]
+[connection signal="body_shape_entered" from="Node2D/Planet/Area2D3" to="Node2D2" method="die"]
+
+[editable path="Node2D"]
