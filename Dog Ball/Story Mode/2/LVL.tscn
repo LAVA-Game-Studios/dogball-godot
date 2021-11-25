@@ -1,37 +1,39 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Story Mode/LEVEL.gd" type="Script" id=1]
 [ext_resource path="res://Story Mode/Ground.gd" type="Script" id=2]
-[ext_resource path="res://Story Mode/Grass.svg" type="Texture" id=3]
+[ext_resource path="res://Assets/dogball/DOGBALL.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Story Mode/honeyhive.wav" type="AudioStream" id=4]
-[ext_resource path="res://Assets/FLAG.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/flag/FLAG.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Story Mode/Grass.svg" type="Texture" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.470588, 0.709804, 0.792157, 1 )
-polygon = PoolVector2Array( -632, -1376, 7024, -1608, 6616, 888, -696, 800 )
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( 0, 41 )
-build_mode = 1
-polygon = PoolVector2Array( -376, 0, -399.937, 417.962, 1847.67, 89.7405, 2584, 23, 3032, 159, 3384, 39, 3624, 247, 3992, 167, 5032, 135, 6064, 127, 6472, -193, 6524.5, -416.119, 6456, -601, 6400, -689, 6144, -817, 6072, -729, 6240, -689, 6352, -625, 6440, -345, 6416, -233, 6288, -129, 5832, 87, 5104, 87, 5080, -81, 5032, -1, 4889.95, 128.955, 4656, 119, 4640, 111, 4520, 23, 4232, -33, 3968, -17, 3680, 39, 3664, 207, 3376, -17, 2976, 31, 2528, -65, 1829.82, 0 )
-script = ExtResource( 2 )
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
-texture = ExtResource( 3 )
-
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( 0, 41 )
-build_mode = 1
-polygon = PoolVector2Array( 5096, -105, 5056, -201, 4952, -241, 4856, -177, 4840, -137, 4856, -81, 4944, -57, 5024, -73, 5024, -49, 4944, -33, 4856, -57, 4816, -137, 4840, -185, 4952, -265, 5056, -225, 5096, -137 )
+position = Vector2( 232, -16 )
+polygon = PoolVector2Array( 472, -48, 1368, -48, 1392, -16, 1392, 24, 1368, 64, 1256, 144, 1288, 192, 1560, 192, 1496, 224, 1296, 224, 1184, 312, 1136, 56, 1000, 312, 944, 120, 776, 272, 744, 168, 640, 264 )
 script = ExtResource( 2 )
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D2"]
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
+texture_rotation_degrees = 127.4
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 232, -16 )
+polygon = PoolVector2Array( 1648, 208, 1816, 208, 1800, 336, 1868.49, 336, 1904, 240, 1848, 160, 1992, 160, 1908.86, 336, 2064, 328, 2168, 312, 2744, 312, 2744, 352, 2080, 352, 1800, 352, 1800, 352, 1672, 352 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D4"]
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 232, -16 )
+polygon = PoolVector2Array( 1328, -72, 1360, -72, 1392, -56, 1408, -24, 1416, 0, 1408, 32, 1384, 72, 1344, 104, 1296, 136, 1296, 152, 1352, 120, 1400, 80, 1424, 32, 1432, 0, 1424, -32, 1400, -88, 1360, -104, 1328, -104 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D3"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -42,6 +44,9 @@ position = Vector2( 6112, -640 )
 
 [node name="AnimatedSprite" parent="Node2D/Node2D" index="1"]
 frame = 0
+
+[node name="Node2D2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 736, -96 )
 
 [connection signal="body_entered" from="Node2D/Node2D/Area2D" to="." method="win"]
 

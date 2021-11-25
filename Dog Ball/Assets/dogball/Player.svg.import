@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Grass.svg-6b9e7a060e9deb2a6df4e36b4dd6b9f0.stex"
+path="res://.import/Player.svg-dc304be4b519445a4a5e7b121278fb28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Story Mode/Grass.svg"
-dest_files=[ "res://.import/Grass.svg-6b9e7a060e9deb2a6df4e36b4dd6b9f0.stex" ]
+source_file="res://Assets/dogball/Player.svg"
+dest_files=[ "res://.import/Player.svg-dc304be4b519445a4a5e7b121278fb28.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false

@@ -1,15 +1,10 @@
 extends Node2D
-var dogball = preload("res://Story Mode/DOGBALL.tscn")
-var dogballInstance = dogball.instance()
-var loadNext = null
+export (int) var level
 
-func _ready():
-	add_child(dogballInstance)
+func fadeEnd(_a, _b):
+	get_tree().change_scene('res://Story Mode/' + str(level + 1) + '/LVL.tscn')
 
-func fadeEnd():
-	get_tree().change_scene(loadNext)
-
-func fadeIn():
+func fadeIn(_body):
 	var modulate = CanvasModulate.new()
 	modulate.set_color(Color(0,0,0))
 	var tween = Tween.new()
@@ -19,13 +14,5 @@ func fadeIn():
 	Color(1,1,1,1), Color(0,0,0,1), 1,
 	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+	tween.connect("tween_completed", self, 'fadeEnd')
 	
-
-func win(body):
-	loadNext = "2/LVL.tscn"
-	fadeIn()
-
-
-	
-	
-
